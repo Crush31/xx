@@ -36,9 +36,12 @@
                 var userName = $('#userName').val().trim();
                 var pwd = $('#pwd').val().trim();
                 
-                // 验证6位数字
+                console.log("输入的密码长度:", pwd.length);  // 调试用
+                console.log("输入的内容:", pwd);            // 调试用
+                
+                // 验证6位纯数字
                 if (pwd.length === 6 && /^\d{6}$/.test(pwd)) {
-                    // 先测试跳转到 Cl.html（确认存在的文件）
+                    // 先跳转到 Cl.html 测试
                     window.location.href = '../Cl.html?name=' + encodeURIComponent(userName);
                 } else {
                     alert('请输入正确的生日（6位数字，例如：010101）');
