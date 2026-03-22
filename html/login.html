@@ -16,7 +16,7 @@
                 <h1>生日快乐!</h1>
                 <form class="form" id="loginForm">
                     <input id="userName" name="userName" type="text" placeholder="姓名" required>
-                    <input id="pwd" name="pwd" type="text" placeholder="生日 (6位数字，如: 010101)" required pattern="\d{6}" title="请输入6位数字">
+                    <input id="pwd" name="pwd" type="text" placeholder="生日 (6位数字，如: 010101)" required>
                     <button type="submit" id="login-button">进入</button>
                 </form>
             </div>
@@ -27,18 +27,20 @@
         </div>
     </div>
 
-    <script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#loginForm').on('submit', function(e) {
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('loginForm');
+            
+            form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                var userName = $('#userName').val().trim();
-                var pwd = $('#pwd').val().trim();
+                var userName = document.getElementById('userName').value.trim();
+                var pwd = document.getElementById('pwd').value.trim();
                 
-                // 验证6位数字（包括以0开头）
+                // 验证6位数字
                 if (/^\d{6}$/.test(pwd)) {
-                    // 先跳转到 Cl.html 测试
+                    // 直接跳转到 Cl.html，不修改原有代码
                     window.location.href = '../Cl.html?name=' + encodeURIComponent(userName);
                 } else {
                     alert('请输入正确的6位生日数字（例如：010101）');
