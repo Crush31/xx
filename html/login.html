@@ -16,7 +16,7 @@
                 <h1>生日快乐!</h1>
                 <form class="form" id="loginForm">
                     <input id="userName" name="userName" type="text" placeholder="姓名" required>
-                    <input id="pwd" name="pwd" type="password" placeholder="生日 (6位数字)" required>
+                    <input id="pwd" name="pwd" type="text" placeholder="生日 (6位数字，如: 010101)" required pattern="\d{6}" title="请输入6位数字">
                     <button type="submit" id="login-button">进入</button>
                 </form>
             </div>
@@ -36,15 +36,12 @@
                 var userName = $('#userName').val().trim();
                 var pwd = $('#pwd').val().trim();
                 
-                console.log("输入的密码长度:", pwd.length);  // 调试用
-                console.log("输入的内容:", pwd);            // 调试用
-                
-                // 验证6位纯数字
-                if (pwd.length === 6 && /^\d{6}$/.test(pwd)) {
+                // 验证6位数字（包括以0开头）
+                if (/^\d{6}$/.test(pwd)) {
                     // 先跳转到 Cl.html 测试
                     window.location.href = '../Cl.html?name=' + encodeURIComponent(userName);
                 } else {
-                    alert('请输入正确的生日（6位数字，例如：010101）');
+                    alert('请输入正确的6位生日数字（例如：010101）');
                 }
             });
         });
