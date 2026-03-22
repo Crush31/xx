@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>生日快乐</title>
+    <link rel="stylesheet" href="css/normalizel.css">
+    <link rel="stylesheet" href="css/stylel.css" media="screen" type="text/css" />
+</head>
+
+<body>
+    <canvas class="canvas"></canvas>
+
+    <div class="help">?</div> 
+
+    <div class="ui">
+        <input class="ui-input" type="text" />
+        <span class="ui-return">↵</span>
+    </div>
+
+    <div class="overlay">
+        <div class="tabs">
+            <div class="tabs-labels">
+                <span class="tabs-label">Commands</span>
+                <span class="tabs-label">Info</span>
+                <span class="tabs-label">Share</span>
+            </div>
+            <div class="tabs-panels">
+                <ul class="tabs-panel commands">
+                    <li class="commands-item">
+                        <span class="commands-item-title">Text</span>
+                        <span class="commands-item-info" data-demo="Hello :)">Type anything</span>
+                        <span class="commands-item-action">Demo</span>
+                    </li>
+                    <li class="commands-item">
+                        <span class="commands-item-title">Countdown</span>
+                        <span class="commands-item-info" data-demo="#countdown 5">#countdown<span class="commands-item-mode">number</span></span>
+                        <span class="commands-item-action">Demo</span>
+                    </li>
+                    <li class="commands-item">
+                        <span class="commands-item-title">Time</span>
+                        <span class="commands-item-info" data-demo="#time">#time</span>
+                        <span class="commands-item-action">Demo</span>
+                    </li>
+                    <li class="commands-item">
+                        <span class="commands-item-title">Rectangle</span>
+                        <span class="commands-item-info" data-demo="#rectangle 30x15">#rectangle<span class="commands-item-mode">width x height</span></span>
+                        <span class="commands-item-action">Demo</span>
+                    </li>
+                    <li class="commands-item">
+                        <span class="commands-item-title">Circle</span>
+                        <span class="commands-item-info" data-demo="#circle 25">#circle<span class="commands-item-mode">diameter</span></span>
+                        <span class="commands-item-action">Demo</span>
+                    </li>
+                    <li class="commands-item commands-item--gap">
+                        <span class="commands-item-title">Animate</span>
+                        <span class="commands-item-info" data-demo="The time is|#time|#countdown 3|#icon thumbs-up">
+                            <span class="commands-item-mode">command1</span>&nbsp;|<span class="commands-item-mode">command2</span>
+                        </span>
+                        <span class="commands-item-action">Demo</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/indexl.js"></script>
+    
+    <!-- 自动触发倒计时，然后跳转到蛋糕页 -->
+    <script>
+        // 获取URL中的用户名
+        const urlParams = new URLSearchParams(window.location.search);
+        const userName = urlParams.get('name') || '朋友';
+        
+        // 等待页面加载完成后自动点击 Countdown 的 Demo 按钮
+        setTimeout(function() {
+            // 查找并点击 Countdown 的 Demo 按钮
+            var demoButtons = document.querySelectorAll('.commands-item-action');
+            for (var i = 0; i < demoButtons.length; i++) {
+                var titleElement = demoButtons[i].parentElement.querySelector('.commands-item-title');
+                if (titleElement && titleElement.innerText === 'Countdown') {
+                    demoButtons[i].click();
+                    break;
+                }
+            }
+            
+            // 5秒倒计时结束后跳转到蛋糕页
+            setTimeout(function() {
+                window.location.href = 'BirthdayCake.html?name=' + encodeURIComponent(userName);
+            }, 6000); // 5秒倒计时 + 1秒缓冲
+        }, 500);
+    </script>
+</body>
+
+</html>
