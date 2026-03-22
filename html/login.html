@@ -16,44 +16,32 @@
                 <h1>生日快乐!</h1>
                 <form class="form" id="loginForm">
                     <input id="userName" name="userName" type="text" placeholder="姓名" required>
-                    <input id="pwd" name="pwd" type="password" placeholder="生日 (如: 0101)" required>
+                    <input id="pwd" name="pwd" type="password" placeholder="生日 (6位数字)" required>
                     <button type="submit" id="login-button">进入</button>
                 </form>
             </div>
             <ul class="bg-bubbles">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>                                                                                                                                                                                                                                
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li></li><li></li><li></li><li></li><li></li>
+                <li></li><li></li><li></li><li></li><li></li>
             </ul>
         </div>
     </div>
 
     <script src="../js/jquery-2.1.1.min.js"></script>
     <script>
-        // 等待页面加载完成
         $(document).ready(function() {
-            // 监听表单提交事件
             $('#loginForm').on('submit', function(e) {
-                e.preventDefault(); // 阻止表单默认提交
+                e.preventDefault();
                 
-                // 获取输入的姓名和生日
                 var userName = $('#userName').val().trim();
                 var pwd = $('#pwd').val().trim();
                 
-                // 验证生日格式（6位数字，如 010123 表示2001年1月1日）
-                if (pwd.length === 6 && /^\d{4}$/.test(pwd)) {
-                    // 验证通过，跳转到蛋糕页
-                    // 注意：将 "xx" 替换为您的仓库名
-                    window.location.href = '/xx/BirthdayCake.html?name=' + encodeURIComponent(userName);
+                // 验证6位数字
+                if (pwd.length === 6 && /^\d{6}$/.test(pwd)) {
+                    // 先测试跳转到 Cl.html（确认存在的文件）
+                    window.location.href = '../Cl.html?name=' + encodeURIComponent(userName);
                 } else {
-                    alert('请输入正确的生日（6位数字，例如：010123）');
+                    alert('请输入正确的生日（6位数字，例如：010101）');
                 }
             });
         });
